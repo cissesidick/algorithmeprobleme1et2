@@ -1,0 +1,111 @@
+// PROBLÈME 2: Produit scalaire
+
+// Partie 1: Procédure pour le produit scalaire
+
+PROCEDURE produit_scalaire(v1: TABLEAU_DE REEL, v2: TABLEAU_DE REEL, n: ENTIER, VAR ps: REEL)
+VAR
+    i : ENTIER;
+DEBUT
+    ps := 0;
+    POUR i DE 0 A n-1 FAIRE
+        ps := ps + (v1[i] * v2[i]);
+    FIN_POUR
+FIN
+
+
+// Partie 2: Algorithme pour vérifier l'orthogonalité avec une procédure
+
+ALGORITHME verifier_orthogonalite_procedure
+VAR
+    n_paires : ENTIER;
+    taille_vecteur : ENTIER;
+    v1, v2 : TABLEAU_DE REEL[100];
+    produit : REEL;
+    i, j : ENTIER;
+    
+DEBUT
+    Ecrire("Entrez le nombre de paires de vecteurs : ");
+    Lire(n_paires);
+    
+    Ecrire("Entrez la taille des vecteurs : ");
+    Lire(taille_vecteur);
+    
+    POUR i DE 1 A n_paires FAIRE
+        Ecrire("Entrez les éléments du vecteur 1 pour la paire ", i, " : ");
+        POUR j DE 0 A taille_vecteur-1 FAIRE
+            Lire(v1[j]);
+        FIN_POUR
+        
+        Ecrire("Entrez les éléments du vecteur 2 pour la paire ", i, " : ");
+        POUR j DE 0 A taille_vecteur-1 FAIRE
+            Lire(v2[j]);
+        FIN_POUR
+        
+        // Appeler la procédure pour calculer le produit scalaire
+        produit_scalaire(v1, v2, taille_vecteur, produit);
+        
+        // Vérifier si orthogonal (produit scalaire = 0)
+        SI produit = 0 ALORS
+            Ecrire("La paire ", i, " est orthogonale");
+        SINON
+            Ecrire("La paire ", i, " n'est pas orthogonale (produit scalaire = ", produit, ")");
+        FIN_SI
+    FIN_POUR
+    
+FIN
+
+
+// Partie 3: Version fonction du produit scalaire
+
+FONCTION produit_scalaire_fonction(v1: TABLEAU_DE REEL, v2: TABLEAU_DE REEL, n: ENTIER) : REEL
+VAR
+    i : ENTIER;
+    resultat : REEL;
+DEBUT
+    resultat := 0;
+    POUR i DE 0 A n-1 FAIRE
+        resultat := resultat + (v1[i] * v2[i]);
+    FIN_POUR
+    RETOURNER resultat;
+FIN
+
+
+// Partie 3: Algorithme utilisant une fonction au lieu d'une procédure
+ALGORITHME verifier_orthogonalite_fonction
+VAR
+    n_paires : ENTIER;
+    taille_vecteur : ENTIER;
+    v1, v2 : TABLEAU_DE REEL[100];
+    produit : REEL;
+    i, j : ENTIER;
+    
+DEBUT
+    Ecrire("Entrez le nombre de paires de vecteurs : ");
+    Lire(n_paires);
+    
+    Ecrire("Entrez la taille des vecteurs : ");
+    Lire(taille_vecteur);
+    
+    POUR i DE 1 A n_paires FAIRE
+        Ecrire("Entrez les éléments du vecteur 1 pour la paire ", i, " : ");
+        POUR j DE 0 A taille_vecteur-1 FAIRE
+            Lire(v1[j]);
+        FIN_POUR
+        
+        Ecrire("Entrez les éléments du vecteur 2 pour la paire ", i, " : ");
+        POUR j DE 0 A taille_vecteur-1 FAIRE
+            Lire(v2[j]);
+        FIN_POUR
+        
+        // Appeler la fonction pour calculer le produit scalaire
+        produit := produit_scalaire_fonction(v1, v2, taille_vecteur);
+        
+        // Vérifier si orthogonal (produit scalaire = 0)
+        SI produit = 0 ALORS
+            Ecrire("La paire ", i, " est orthogonale");
+        SINON
+            Ecrire("La paire ", i, " n'est pas orthogonale (produit scalaire = ", produit, ")");
+        FIN_SI
+    FIN_POUR
+    
+FIN
