@@ -1,0 +1,70 @@
+// PROBLÈME 1: Somme des éléments distincts
+
+ALGORITHME somme_elements_distincts
+VAR
+    ensemble1 : TABLEAU_DE ENTIER[100];
+    ensemble2 : TABLEAU_DE ENTIER[100];
+    taille1, taille2 : ENTIER;
+    somme : ENTIER;
+    i, j : ENTIER;
+    trouve : BOOLEEN;
+    
+DEBUT
+    // Initialiser la somme
+    somme := 0;
+    
+    // Saisie de l'ensemble1
+    Ecrire("Entrez la taille de l'ensemble1 : ");
+    Lire(taille1);
+    Ecrire("Entrez les éléments de l'ensemble1 : ");
+    POUR i DE 0 A taille1-1 FAIRE
+        Lire(ensemble1[i]);
+    FIN_POUR
+    
+    // Saisie de l'ensemble2
+    Ecrire("Entrez la taille de l'ensemble2 : ");
+    Lire(taille2);
+    Ecrire("Entrez les éléments de l'ensemble2 : ");
+    POUR i DE 0 A taille2-1 FAIRE
+        Lire(ensemble2[i]);
+    FIN_POUR
+    
+    // Comparer chaque élément de ensemble1 avec ensemble2
+    // S'il n'est pas trouvé dans ensemble2, l'ajouter à la somme
+    POUR i DE 0 A taille1-1 FAIRE
+        trouve := FAUX;
+        POUR j DE 0 A taille2-1 FAIRE
+            SI ensemble1[i] = ensemble2[j] ALORS
+                trouve := VRAI;
+                BREAK;
+            FIN_SI
+        FIN_POUR
+        
+        // Si l'élément n'est pas trouvé dans ensemble2, ajouter à la somme
+        SI trouve = FAUX ALORS
+            somme := somme + ensemble1[i];
+        FIN_SI
+    FIN_POUR
+    
+    // Comparer chaque élément de ensemble2 avec ensemble1
+    // S'il n'est pas trouvé dans ensemble1, l'ajouter à la somme
+    POUR i DE 0 A taille2-1 FAIRE
+        trouve := FAUX;
+        POUR j DE 0 A taille1-1 FAIRE
+            SI ensemble2[i] = ensemble1[j] ALORS
+                trouve := VRAI;
+                BREAK;
+            FIN_SI
+        FIN_POUR
+        
+        // Si l'élément n'est pas trouvé dans ensemble1, ajouter à la somme
+        SI trouve = FAUX ALORS
+            somme := somme + ensemble2[i];
+        FIN_SI
+    FIN_POUR
+    
+    // Afficher le résultat
+    Ecrire("Somme des éléments distincts : ", somme);
+    
+FIN
+
